@@ -20,12 +20,13 @@ class DataPull:
 
         """
         import requests
-        stock_list =  self.list_of_stocks()
+        stock_quote_request_list = []
+        stock_list = self.list_of_stocks()
         for stock in stock_list:
             rest_json_request_url = "http://dev.markitondemand.com/Api/" \
                                     "v2/Quote/json?symbol=" + stock
-            stockquoterequest = requests.get(rest_json_request_url)
-            print(stockquoterequest.text)
+            stock_quote_request_list.append((requests.get(rest_json_request_url)).text)
+        return stock_quote_request_list
 
     def list_of_stocks(self):
         """
